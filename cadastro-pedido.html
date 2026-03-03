@@ -1,0 +1,62 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cadastro de Pedido</title>
+  <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+  <div class="container">
+    <h2>📦 Cadastro de Pedido</h2>
+    <p>Preencha os dados abaixo para registrar um novo pedido.</p>
+
+    <form id="formPedido">
+      <div class="form-group">
+        <label for="clientePedido">Cliente</label>
+        <select id="clientePedido" required>
+          <option value="">Selecione o cliente</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="produtoPedido">Produto</label>
+        <select id="produtoPedido" required>
+          <option value="">Selecione o produto</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="quantidadePedido">Quantidade</label>
+        <input type="number" id="quantidadePedido" placeholder="Qtd" min="1" required>
+      </div>
+
+      <button type="submit" class="btn">Cadastrar Pedido</button>
+    </form>
+
+    <h3>📝 Pedidos Cadastrados</h3>
+    <table id="tabela-pedidos">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Data/Hora</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+
+    <p class="links">
+      <a href="relatorio-pedidos.html">Ver Relatórios</a> |
+      <a href="consulta-pedido.html">Consultar Pedido</a> | <a href="admin.html">Home</a>
+    </p>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+

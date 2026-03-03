@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel do Administrador</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <!-- Menu suspenso à esquerda -->
+      <ul class="menu">
+        <li class="menu-item">
+          <a href="#">Cadastro</a>
+          <ul class="submenu">
+            <li><a href="cadastro-produto.html">Cadastro de Produtos</a></li>
+            <li><a href="cadastro-cliente.html">Cadastro de Cliente</a></li>
+            <li><a href="cadastro-pedido.html">Cadastro de Pedido</a></li>
+          </ul>
+        </li>
+        <li class="menu-item">
+          <a href="#">Relatório</a>
+          <ul class="submenu">
+            <li><a href="relatorio-pedidos.html">Pedidos Realizados</a></li>
+            <li><a href="relatorio-produtos.html">Produtos Mais Vendidos</a></li>
+            <li><a href="relatorio-financeiro.html">Relatório Financeiro</a></li>
+          </ul>
+        </li>
+        <li class="menu-item"><a href="consulta.html">Consulta</a></li>
+      </ul>
+
+      <!-- Logo no centro -->
+      <div class="logo">
+  <a href="index.html" class="logo-link" title="Voltar à Home">
+    <img src="assets/logo.png" alt="Champion's Shirts Logo" class="logo">
+
+  </a>
+        <h1>Champion’s Shirts</h1>
+      </div>
+
+      <!-- Barra de pesquisa à direita -->
+      <div class="search-bar">
+        <input type="text" placeholder="Pesquisar..." id="search-input">
+        <button id="search-btn">🔍</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="conteudo">
+      <h2>🏟️ Bem-vindo ao Painel Administrador da Champion’s Shirts</h2>
+      <p>Gerencie seus produtos, clientes e relatórios com estilo de craque!</p>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+
+<footer>
+  &copy; 2025 Champion’s Shirts • Loja de Camisas de Futebol
+</footer>
+</html>

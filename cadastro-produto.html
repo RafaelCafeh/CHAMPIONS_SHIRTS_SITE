@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Produto</title>
+  <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Cadastro de Produto</h1>
+    <form id="form-produto">
+  <input type="text" id="nome" placeholder="Nome do Produto">
+  <input type="number" id="preco" placeholder="Preço (R$)">
+  <input type="number" id="estoque" placeholder="Quantidade em Estoque">
+  <textarea id="descricao" placeholder="Descrição do Produto"></textarea>
+  <select id="categoria">
+    <option value="">Selecione a Categoria</option>
+    <option value="camisa">Camisa</option>
+    <option value="short">Short</option>
+    <option value="acessorio">Acessório</option>
+  </select>
+  <button type="submit">Cadastrar Produto</button>
+</form>
+
+    <div id="listaProdutos"></div>
+    <p class="links"><a href="index.html">Voltar ao Home</a> | <a href="cadastro-cliente.html">Cadastro Cliente</a> | <a href="cadastro-pedido.html">Cadastro Pedido</a></p>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>

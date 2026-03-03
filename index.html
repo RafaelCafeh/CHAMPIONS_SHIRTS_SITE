@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Champion's Shirts — Loja de Camisas de Time</title>
+  <meta name="description" content="Champion's Shirts — camisas oficiais e retrô de times. Vista sua paixão.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Modal de Boas-Vindas -->
+<div id="welcome-modal" class="modal-overlay">
+  <div class="modal">
+    <h2>Bem-vindo à Champion's Shirts!</h2>
+    <p>Explore nossa coleção de camisas oficiais e fique por dentro das promoções.</p>
+    <button id="welcome-ok" class="btn btn-primary">Começar</button>
+  </div>
+</div>
+
+
+  <header>
+    <div class="container topbar">
+      
+      <!-- Marca / Logo -->
+      <div class="brand">
+        <img src="assets/logo.png" alt="Champion's Shirts" class="logo">
+        <div>
+          <h1>Champion's Shirts</h1>
+          <small>Vista sua paixão</small>
+        </div>
+      </div>
+
+      <!-- Menu de navegação -->
+      <nav>
+        <a href="#">Início</a>
+        <a href="#produtos">Loja</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <!-- Ações do Header -->
+      <div class="actions">
+        
+        <!-- Botão de Filtros -->
+        <button class="btn btn-outline" id="open-filter">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M3 5h18v2H3zm4 6h10v2H7zm4 6h2v2h-2z"/></svg>
+          Filtros
+        </button>
+
+                  <!-- Botão do Carrinho -->
+          <button id="cart-btn" class="btn">
+            Carrinho (<span id="cart-count">0</span>)
+          </button>
+
+          <!-- Painel do Carrinho -->
+          <div id="cart-panel" class="cart-panel">
+            <h3>Seu Carrinho</h3>
+            <ul id="cart-list"></ul>
+            <p>Total: <strong id="cart-total">R$ 0,00</strong></p>
+          </div>
+
+
+        <!-- Botão de Login -->
+        <button class="btn btn-primary" id="login-btn" onclick="window.location.href='login.html'">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v10z"/></svg>
+          Login
+        </button>
+
+        <!-- Link da Conta -->
+        <a href="perfil.html" class="btn btn-profile" title="Minha Conta">
+          <img src="assets/perfil.png" alt="Perfil" class="profile-icon">
+          <span class="profile-label">Conta</span>
+        </a>
+
+      </div><!-- /actions -->
+
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-text">
+        <h2>DA ARQUIBANCADA À GLÓRIA, VOCÊ FAZ PARTE DA HISTÓRIA.</h2>
+        <p>As melhores camisas dos seus times favoritos, Camisas oficiais, edições retrô e personalizadas. Qualidade e entrega rápida para você vestir sua torcida com orgulho.</p>
+        <div class="hero-cta">
+          <button class="btn" onclick="document.getElementById('produtos').scrollIntoView({behavior:'smooth'})">Ver produtos</button>
+          <button class="btn secondary">Personalizar camisa</button>
+        </div>
+      </div>
+      <div class="banner">
+        <img src="assets/bannerhome.png" alt="banner" class="banner-img">
+      </div>
+    </section>
+
+    <!-- Produtos -->
+<section id="produtos">
+  <h3>Loja</h3>
+
+  <!-- Filtros por time -->
+  <div class="filters" id="teams">
+    <div class="chip active" data-team="all">
+      <img src="assets/logo.png" alt="" class="chip-icon"><span>Todos</span>
+    </div>
+    <div class="chip" data-team="flamengo">
+      <img src="assets/flamengo.jpeg" alt="" class="chip-icon"><span>Flamengo</span>
+    </div>
+    <div class="chip" data-team="palmeiras">
+      <img src="assets/palmeiras.jpg" alt="" class="chip-icon"><span>Palmeiras</span>
+    </div>
+    <div class="chip" data-team="vasco">
+      <img src="assets/vasco.jpg" alt="" class="chip-icon"><span>Vasco</span>
+    </div>
+    <div class="chip" data-team="santos">
+      <img src="assets/santos.JPEG" alt="" class="chip-icon"><span>Santos</span>
+    </div>
+    <div class="chip" data-team="custom" onclick="toggleCustomInput()">
+      <img src="assets/custom.jpeg" alt="" class="chip-icon"><span>Personalizada</span>
+    </div>
+  </div>
+
+  <!-- Campo personalizado oculto -->
+  <div id="custom-input" class="custom-input" style="display:none;">
+    <input type="text" placeholder="Digite o nome do time...">
+    <input type="file" accept="image/*">
+  </div>
+
+  <!-- Grade de produtos -->
+  <div class="grid" id="product-grid">
+
+    <div class="product-card" data-team="flamengo">
+      <img src="assets/flamengo.jpeg" alt="Camisa Flamengo 2024">
+      <h4>Camisa Flamengo 2024 - Home</h4>
+      <p class="price">R$ 249,90</p>
+      <button class="btn">Adicionar ao carrinho</button>
+    </div>
+
+    <div class="product-card" data-team="palmeiras">
+      <img src="assets/palmeiras.jpg" alt="Camisa Palmeiras 2023">
+      <h4>Camisa Palmeiras 2023 - Away</h4>
+      <p class="price">R$ 219,90</p>
+      <button class="btn">Adicionar ao carrinho</button>
+    </div>
+
+    <div class="product-card" data-team="vasco">
+      <img src="assets/vasco.jpg" alt="Camisa Vasco 2024">
+      <h4>Camisa Vasco 2024 - Home</h4>
+      <p class="price">R$ 229,90</p>
+      <button class="btn">Adicionar ao carrinho</button>
+    </div>
+
+    <div class="product-card" data-team="santos">
+      <img src="assets/santos.jpeg" alt="Camisa Santos 2024">
+      <h4>Camisa Santos 2024 - Away</h4>
+      <p class="price">R$ 239,90</p>
+      <button class="btn">Adicionar ao carrinho</button>
+    </div>
+
+    <div class="product-card" data-team="custom">
+      <img src="assets/custom.jpeg" alt="Camisa Personalizada">
+      <h4>Camisa Personalizada</h4>
+      <p class="price">R$ 139,90</p>
+      <button class="btn">Adicionar ao carrinho</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Importa o script -->
+<script src="script.js"></script>
+
+
+    <!-- Sobre -->
+    <section id="sobre">
+      <h3>Sobre nós</h3>
+      <p>Champion's Shirts é uma loja dedicada a levar camisas oficiais, retrô e de colecionador para torcedores que amam o futebol. Trabalhamos com fornecedores confiáveis e oferecemos suporte para personalizações.</p>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato">
+      <h3>Contato</h3>
+      <p>Email: contato@championsshirts.com • WhatsApp: (00) 90000-0000</p>
+    </section>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>Champion's Shirts</strong>
+        <p>Rua Exemplo, 123 — Loja de camisas</p>
+      </div>
+      <div>
+        <p>© <span id="year"></span> Champion's Shirts. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+
+

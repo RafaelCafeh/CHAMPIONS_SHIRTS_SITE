@@ -1,0 +1,176 @@
+:root {
+  --green-dark: #027a5e;
+  --green-light: #4caf50;
+  --grass: #aca6a657;
+  --white: #fff;
+  --radius: 0.5rem;
+  --gap: 1rem;
+  --font: 16px/1.5 "Segoe UI", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: var(--font);
+  background: var(--grass);
+  color: #222;
+}
+
+/* container flex, mas com centro fixo */
+.navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green-dark);
+  padding: 0.75rem 1rem;
+}
+
+/* logo fica fora do fluxo central */
+.logo-link {
+  position: absolute;
+  left: 1rem;
+}
+.logo {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* agrupa título + nav para centralizar juntos */
+.center-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* título "Meu Perfil" */
+.page-title {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* nav-list centralizada abaixo do título */
+.nav-list {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link {
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius);
+  transition: background 0.2s;
+}
+.nav-link:hover,
+.nav-link.active {
+  background: var(--green-light);
+  color: var(--green-dark);
+}
+
+.nav-link {
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  transition: background 0.2s;
+}
+.nav-link:hover,
+.nav-link.active {
+  background: var(--green-light);
+  color: var(--green-dark);
+}
+
+
+/* ── Layout Principal ───────────────────────────── */
+.profile-container {
+  display: flex;
+  max-width: 1000px;
+  margin: 2rem auto;
+  gap: var(--gap);
+  padding: 0 var(--gap);
+}
+
+/* ── Avatar e Info ───────────────────────────────── */
+.profile-info {
+  flex: 0 0 240px;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: var(--gap);
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--green-light);
+  margin-bottom: var(--gap);
+}
+
+.profile-info h2 {
+  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+}
+
+.profile-info p {
+  color: #555;
+}
+
+/* ── Conta: Cards de Info ───────────────────────── */
+.account-info {
+  flex: 1;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: var(--gap);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.account-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--gap);
+  list-style: none;
+}
+
+.account-item {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: var(--gap);
+  background: #f9f9f9;
+  border-radius: var(--radius);
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: bold;
+  color: var(--green-dark);
+}
+
+.value {
+  margin-top: 0.25rem;
+}
+

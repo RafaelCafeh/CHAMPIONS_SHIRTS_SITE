@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Loja de Camisas</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="login-page">
+  <div class="login-box" >
+    <div id="popupBoasVindas" class="popup">
+  <p>👋 Bem-vindo! Você está na tela de Login da <strong>Champion’s Shirts</strong>! 🇧🇷</p>
+</div>
+
+    <h1>Login</h1>
+
+    <form id="loginForm">
+      <input type="text" placeholder="Login" id="login">
+    <input type="password" placeholder="Senha" id="senha">
+    <input class="btn-login" type="submit" onclick="logar(); return false" >
+    </form>
+
+    <p id="msgErro"></p>
+    <p class="links"><a href="cadastro-cliente.html">Não tem uma conta?Cadastre-se (sem login)</a></p>
+
+  </div>
+
+  <script>
+  // Exibe o pop-up ao carregar a página
+  window.onload = function() {
+    const popup = document.getElementById("popupBoasVindas");
+    popup.style.display = "block";
+
+    // Oculta após 5 segundos
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 5000);
+  };
+</script>
+
+</body>
+
+  <script src="js/script.js"></script>
+
+
+
+</html>
+
