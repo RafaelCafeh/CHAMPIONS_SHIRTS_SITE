@@ -9,6 +9,8 @@
 </head>
 <body>
 
+  <a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
+
   <!-- Modal de Boas-Vindas -->
   <div id="welcome-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="welcome-title" aria-hidden="true">
     <div class="modal">
@@ -18,13 +20,12 @@
     </div>
   </div>
 
-
   <header>
     <div class="container topbar">
-      
+
       <!-- Marca / Logo -->
       <div class="brand">
-        <img src="assets/logo.png" alt="Champion's Shirts" class="logo">
+        <img src="assets/logo.png" alt="Champion's Shirts" class="logo" loading="lazy">
         <div>
           <h1>Champion's Shirts</h1>
           <small>Vista sua paixão</small>
@@ -32,7 +33,7 @@
       </div>
 
       <!-- Menu de navegação -->
-      <nav>
+      <nav aria-label="Navegação principal">
         <a href="#">Início</a>
         <a href="#produtos">Loja</a>
         <a href="#sobre">Sobre</a>
@@ -41,35 +42,34 @@
 
       <!-- Ações do Header -->
       <div class="actions">
-        
+
         <!-- Botão de Filtros -->
-        <button class="btn btn-outline" id="open-filter" type="button">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M3 5h18v2H3zm4 6h10v2H7zm4 6h2v2h-2z"/></svg>
+        <button class="btn btn-outline" id="open-filter" type="button" aria-label="Abrir filtros">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v2H3zm4 6h10v2H7zm4 6h2v2h-2z"/></svg>
           Filtros
         </button>
 
-                  <!-- Botão do Carrinho -->
-          <button id="cart-btn" class="btn" type="button" aria-expanded="false" aria-controls="cart-panel">
-            Carrinho (<span id="cart-count">0</span>)
-          </button>
+        <!-- Botão do Carrinho -->
+        <button id="cart-btn" class="btn" type="button" aria-expanded="false" aria-controls="cart-panel" aria-label="Abrir carrinho">
+          Carrinho (<span id="cart-count">0</span>)
+        </button>
 
-          <!-- Painel do Carrinho -->
-          <div id="cart-panel" class="cart-panel" role="region" aria-hidden="true" aria-labelledby="cart-title">
-            <h3 id="cart-title">Seu Carrinho</h3>
-            <ul id="cart-list"></ul>
-            <p>Total: <strong id="cart-total">R$ 0,00</strong></p>
-          </div>
-
+        <!-- Painel do Carrinho -->
+        <div id="cart-panel" class="cart-panel" role="region" aria-hidden="true" aria-labelledby="cart-title">
+          <h3 id="cart-title">Seu Carrinho</h3>
+          <ul id="cart-list"></ul>
+          <p>Total: <strong id="cart-total">R$ 0,00</strong></p>
+        </div>
 
         <!-- Botão de Login -->
         <a href="login.html" class="btn btn-primary" id="login-btn">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v10z"/></svg>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5v10z"/></svg>
           Login
         </a>
 
         <!-- Link da Conta -->
         <a href="perfil.html" class="btn btn-profile" title="Minha Conta">
-          <img src="assets/perfil.png" alt="Perfil" class="profile-icon">
+          <img src="assets/perfil.png" alt="" class="profile-icon" loading="lazy">
           <span class="profile-label">Conta</span>
         </a>
 
@@ -78,99 +78,99 @@
     </div>
   </header>
 
-  <main class="container">
-    
+  <main class="container" id="main-content">
+
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-text">
         <h2>DA ARQUIBANCADA À GLÓRIA, VOCÊ FAZ PARTE DA HISTÓRIA.</h2>
         <p>As melhores camisas dos seus times favoritos, Camisas oficiais, edições retrô e personalizadas. Qualidade e entrega rápida para você vestir sua torcida com orgulho.</p>
         <div class="hero-cta">
-          <button class="btn" type="button" onclick="document.getElementById('produtos').scrollIntoView({behavior:'smooth'})">Ver produtos</button>
+          <button class="btn" type="button" id="hero-produtos-btn">Ver produtos</button>
           <button class="btn secondary" type="button">Personalizar camisa</button>
         </div>
       </div>
       <div class="banner">
-        <img src="assets/bannerhome.png" alt="Banner Champion's Shirts" class="banner-img" loading="lazy">
+        <img src="assets/bannerhome.png" alt="Banner promocional Champion's Shirts — camisas oficiais e retrô" class="banner-img" loading="lazy">
       </div>
     </section>
 
     <!-- Produtos -->
-<section id="produtos">
-  <h3>Loja</h3>
+    <section id="produtos">
+      <h3>Loja</h3>
 
-  <!-- Filtros por time -->
-  <div class="filters" id="teams">
-    <div class="chip active" data-team="all">
-      <img src="assets/logo.png" alt="Logo Champion's Shirts" class="chip-icon"><span>Todos</span>
-    </div>
-    <div class="chip" data-team="flamengo">
-      <img src="assets/flamengo.jpeg" alt="Logo Flamengo" class="chip-icon"><span>Flamengo</span>
-    </div>
-    <div class="chip" data-team="palmeiras">
-      <img src="assets/palmeiras.jpg" alt="Logo Palmeiras" class="chip-icon"><span>Palmeiras</span>
-    </div>
-    <div class="chip" data-team="vasco">
-      <img src="assets/vasco.jpg" alt="Logo Vasco" class="chip-icon"><span>Vasco</span>
-    </div>
-    <div class="chip" data-team="santos">
-      <img src="assets/santos.JPEG" alt="Logo Santos" class="chip-icon"><span>Santos</span>
-    </div>
-    <div class="chip" data-team="custom" onclick="toggleCustomInput()">
-      <img src="assets/custom.jpeg" alt="Personalizada" class="chip-icon"><span>Personalizada</span>
-    </div>
-  </div>
+      <!-- Filtros por time -->
+      <div class="filters" id="teams" role="group" aria-label="Filtrar por time">
+        <button class="chip active" data-team="all" type="button">
+          <img src="assets/logo.png" alt="" class="chip-icon" loading="lazy"><span>Todos</span>
+        </button>
+        <button class="chip" data-team="flamengo" type="button">
+          <img src="assets/flamengo.jpeg" alt="" class="chip-icon" loading="lazy"><span>Flamengo</span>
+        </button>
+        <button class="chip" data-team="palmeiras" type="button">
+          <img src="assets/palmeiras.jpg" alt="" class="chip-icon" loading="lazy"><span>Palmeiras</span>
+        </button>
+        <button class="chip" data-team="vasco" type="button">
+          <img src="assets/vasco.jpg" alt="" class="chip-icon" loading="lazy"><span>Vasco</span>
+        </button>
+        <button class="chip" data-team="santos" type="button">
+          <img src="assets/santos.JPEG" alt="" class="chip-icon" loading="lazy"><span>Santos</span>
+        </button>
+        <button class="chip" data-team="custom" type="button">
+          <img src="assets/custom.jpeg" alt="" class="chip-icon" loading="lazy"><span>Personalizada</span>
+        </button>
+      </div>
 
-  <!-- Campo personalizado oculto -->
-  <div id="custom-input" class="custom-input" style="display:none;">
-    <input type="text" placeholder="Digite o nome do time...">
-    <input type="file" accept="image/*">
-  </div>
+      <!-- Campo personalizado oculto -->
+      <div id="custom-input" class="custom-input" style="display:none;">
+        <label for="custom-team-name">Nome do time</label>
+        <input type="text" id="custom-team-name" placeholder="Digite o nome do time...">
+        <label for="custom-team-logo">Logo do time</label>
+        <input type="file" id="custom-team-logo" accept="image/*">
+      </div>
 
-  <!-- Grade de produtos -->
-  <div class="grid" id="product-grid">
+      <!-- Grade de produtos -->
+      <div class="grid" id="product-grid">
 
-    <div class="product-card" data-team="flamengo">
-      <img src="assets/flamengo.jpeg" alt="Camisa Flamengo 2024" loading="lazy">
-      <h4>Camisa Flamengo 2024 - Home</h4>
-      <p class="price">R$ 249,90</p>
-      <button class="btn" type="button">Adicionar ao carrinho</button>
-    </div>
+        <div class="product-card" data-team="flamengo">
+          <img src="assets/flamengo.jpeg" alt="Camisa do Flamengo 2024 - Home" loading="lazy">
+          <h4>Camisa Flamengo 2024 - Home</h4>
+          <p class="price">R$ 249,90</p>
+          <button class="btn" type="button">Adicionar ao carrinho</button>
+        </div>
 
-    <div class="product-card" data-team="palmeiras">
-      <img src="assets/palmeiras.jpg" alt="Camisa Palmeiras 2023" loading="lazy">
-      <h4>Camisa Palmeiras 2023 - Away</h4>
-      <p class="price">R$ 219,90</p>
-      <button class="btn" type="button">Adicionar ao carrinho</button>
-    </div>
+        <div class="product-card" data-team="palmeiras">
+          <img src="assets/palmeiras.jpg" alt="Camisa do Palmeiras 2023 - Away" loading="lazy">
+          <h4>Camisa Palmeiras 2023 - Away</h4>
+          <p class="price">R$ 219,90</p>
+          <button class="btn" type="button">Adicionar ao carrinho</button>
+        </div>
 
-    <div class="product-card" data-team="vasco">
-      <img src="assets/vasco.jpg" alt="Camisa Vasco 2024" loading="lazy">
-      <h4>Camisa Vasco 2024 - Home</h4>
-      <p class="price">R$ 229,90</p>
-      <button class="btn" type="button">Adicionar ao carrinho</button>
-    </div>
+        <div class="product-card" data-team="vasco">
+          <img src="assets/vasco.jpg" alt="Camisa do Vasco 2024 - Home" loading="lazy">
+          <h4>Camisa Vasco 2024 - Home</h4>
+          <p class="price">R$ 229,90</p>
+          <button class="btn" type="button">Adicionar ao carrinho</button>
+        </div>
 
-    <div class="product-card" data-team="santos">
-      <img src="assets/santos.jpeg" alt="Camisa Santos 2024" loading="lazy">
-      <h4>Camisa Santos 2024 - Away</h4>
-      <p class="price">R$ 239,90</p>
-      <button class="btn" type="button">Adicionar ao carrinho</button>
-    </div>
+        <div class="product-card" data-team="santos">
+          <img src="assets/santos.jpeg" alt="Camisa do Santos 2024 - Away" loading="lazy">
+          <h4>Camisa Santos 2024 - Away</h4>
+          <p class="price">R$ 239,90</p>
+          <button class="btn" type="button">Adicionar ao carrinho</button>
+        </div>
 
-    <div class="product-card" data-team="custom">
-      <img src="assets/custom.jpeg" alt="Camisa Personalizada" loading="lazy">
-      <h4>Camisa Personalizada</h4>
-      <p class="price">R$ 139,90</p>
-      <button class="btn" type="button">Adicionar ao carrinho</button>
-    </div>
+        <div class="product-card" data-team="custom">
+          <img src="assets/custom.jpeg" alt="Camisa Personalizada" loading="lazy">
+          <h4>Camisa Personalizada</h4>
+          <p class="price">R$ 139,90</p>
+          <button class="btn" type="button">Adicionar ao carrinho</button>
+        </div>
 
-  </div>
-</section>
+      </div>
+    </section>
 
-<!-- Importa o script -->
-
-  <!-- Sobre -->
+    <!-- Sobre -->
     <section id="sobre">
       <h3>Sobre nós</h3>
       <p>Champion's Shirts é uma loja dedicada a levar camisas oficiais, retrô e de colecionador para torcedores que amam o futebol. Trabalhamos com fornecedores confiáveis e oferecemos suporte para personalizações.</p>
