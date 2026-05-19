@@ -102,8 +102,10 @@ function toggleCart() {
     const isOpen = panel.classList.toggle("open");
     const btn = document.getElementById("cart-btn");
     if (btn) {
-      btn.setAttribute("aria-expanded", isOpen);
+      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
     }
+    // Atualiza atributo ARIA do painel para leitores de tela
+    panel.setAttribute("aria-hidden", isOpen ? "false" : "true");
   }
 }
 
@@ -168,6 +170,34 @@ document.addEventListener("DOMContentLoaded", () => {
   if (cartBtn) {
     cartBtn.addEventListener("click", toggleCart);
   }
+
+  // Delegação de eventos no grid de produtos para garantir que
+  // cliques em botões estáticos ou dinâmicos adicionem ao carrinho
+  const grid = document.getElementById('product-grid');
+  if (grid) {
+    grid.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      // Botões gerados dinamicamente têm a classe `add-to-cart` e `data-id`
+      if (btn.classList.contains('add-to-cart') && btn.dataset.id) {
+        addToCart(parseInt(btn.dataset.id, 10));
+        return;
+      }
+      // Suporte para botões estáticos sem data-id: identifica pelo texto
+      if (btn.textContent && btn.textContent.toLowerCase().includes('adicionar ao carrinho')) {
+        const card = btn.closest('.product-card');
+        if (!card) return;
+        const title = card.querySelector('h4');
+        const name = title ? title.textContent.trim() : null;
+        if (!name) return;
+        const prod = produtosDB.find(p => p.name === name);
+        if (prod) addToCart(prod.id);
+      }
+    });
+  }
+
+  // Atualiza UI do carrinho na inicialização
+  updateCartUI();
 
   // Ano no rodapé
   const year = document.getElementById("year");
