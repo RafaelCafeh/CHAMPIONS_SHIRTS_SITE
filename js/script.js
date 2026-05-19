@@ -59,19 +59,6 @@ function renderProducts(team = "all") {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('welcome-modal');
-    const okBtn = document.getElementById('welcome-ok');
-
-    // Mostra o modal
-    modal.classList.add('show');
-
-    // Fecha ao clicar em "Começar"
-    okBtn.addEventListener('click', () => {
-      modal.classList.remove('show');
-    });
-  });
-
 /* ==========================================================================
    Carrinho
    ========================================================================== */
@@ -112,7 +99,11 @@ function updateCartUI() {
 function toggleCart() {
   const panel = document.getElementById("cart-panel");
   if (panel) {
-    panel.classList.toggle("open");
+    const isOpen = panel.classList.toggle("open");
+    const btn = document.getElementById("cart-btn");
+    if (btn) {
+      btn.setAttribute("aria-expanded", isOpen);
+    }
   }
 }
 
@@ -128,6 +119,14 @@ function initFilters() {
       chip.classList.add("active");
 
       const team = chip.getAttribute("data-team");
+
+      if (team === "custom") {
+        toggleCustomInput();
+      } else {
+        const customInput = document.getElementById("custom-input");
+        if (customInput) customInput.style.display = "none";
+      }
+
       renderProducts(team);
     });
   });
@@ -145,8 +144,24 @@ function toggleCustomInput() {
    Initialization
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
-  renderProducts();   // mostra todos no início
-  initFilters();      // ativa filtros
+  // Modal de boas-vindas
+  const modal = document.getElementById("welcome-modal");
+  const okBtn = document.getElementById("welcome-ok");
+  modal.classList.add("show");
+  okBtn.addEventListener("click", () => {
+    modal.classList.remove("show");
+  });
+
+  renderProducts();
+  initFilters();
+
+  // Botão "Ver produtos" no hero
+  const heroBtn = document.getElementById("hero-produtos-btn");
+  if (heroBtn) {
+    heroBtn.addEventListener("click", () => {
+      document.getElementById("produtos").scrollIntoView({ behavior: "smooth" });
+    });
+  }
 
   // Botão do carrinho
   const cartBtn = document.getElementById("cart-btn");
