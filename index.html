@@ -33,7 +33,7 @@
       </div>
 
       <!-- Menu de navegação -->
-      <nav aria-label="Navegação principal">
+      <nav id="primary-nav" aria-label="Navegação principal" aria-hidden="false">
         <a href="#">Início</a>
         <a href="#produtos">Loja</a>
         <a href="#sobre">Sobre</a>
@@ -43,34 +43,40 @@
       <!-- Ações do Header -->
       <div class="actions">
 
-        <!-- Botão de Filtros -->
-        <button class="btn btn-outline" id="open-filter" type="button" aria-label="Abrir filtros">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v2H3zm4 6h10v2H7zm4 6h2v2h-2z"/></svg>
-          Filtros
+        <!-- Botão hamburger (aparece em telas pequenas) -->
+        <button id="nav-toggle" class="btn btn-icon" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-nav">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
         </button>
 
-        <!-- Botão do Carrinho -->
-        <button id="cart-btn" class="btn" type="button" aria-expanded="false" aria-controls="cart-panel" aria-label="Abrir carrinho">
-          Carrinho (<span id="cart-count">0</span>)
+        <!-- Botão de Filtros (ícone somente) -->
+        <button class="btn btn-filter btn-icon" id="open-filter" type="button" aria-label="Abrir filtros" data-tooltip="Filtros">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v2H3zm4 6h10v2H7zm4 6h2v2h-2z"/></svg>
+        </button>
+
+        <!-- Botão do Carrinho (ícone somente) -->
+        <button id="cart-btn" class="btn btn-cart btn-icon" type="button" aria-expanded="false" aria-controls="cart-panel" aria-label="Abrir carrinho" data-tooltip="Carrinho">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h-2l-1 2h2l3.6 7.59-1.35 2.45C8.89 16.37 9.48 17 10.22 17h7.45v-2H10.9l.85-1.54L19 6H7zM7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+          <span class="badge" id="cart-count">0</span>
         </button>
 
         <!-- Painel do Carrinho -->
         <div id="cart-panel" class="cart-panel" role="region" aria-hidden="true" aria-labelledby="cart-title">
           <h3 id="cart-title">Seu Carrinho</h3>
+          <button id="cart-close" class="btn btn-icon cart-close" aria-label="Fechar carrinho" type="button">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          </button>
           <ul id="cart-list"></ul>
           <p>Total: <strong id="cart-total">R$ 0,00</strong></p>
         </div>
 
-        <!-- Botão de Login -->
-        <a href="login.html" class="btn btn-primary" id="login-btn">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5v10z"/></svg>
-          Login
+        <!-- Botão de Login (ícone usuário) -->
+        <a href="login.html" class="btn btn-login btn-icon" id="login-btn" aria-label="Entrar" data-tooltip="Login">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
         </a>
 
-        <!-- Link da Conta -->
-        <a href="perfil.html" class="btn btn-profile" title="Minha Conta">
-          <img src="assets/perfil.png" alt="" class="profile-icon" loading="lazy">
-          <span class="profile-label">Conta</span>
+        <!-- Link da Conta (ícone/avatar somente) -->
+        <a href="perfil.html" class="btn btn-profile" title="Minha Conta" aria-label="Minha Conta" data-tooltip="Minha Conta">
+          <img src="assets/perfil.png" alt="Avatar do usuário" class="profile-icon" loading="lazy">
         </a>
 
       </div><!-- /actions -->
@@ -124,7 +130,7 @@
       <!-- Campo personalizado oculto -->
       <div id="custom-input" class="custom-input" style="display:none;">
         <label for="custom-team-name">Nome do time</label>
-        <input type="text" id="custom-team-name" placeholder="Digite o nome do time...">
+          <input id="custom-team-text" type="text" placeholder="Digite o nome do time...">
         <label for="custom-team-logo">Logo do time</label>
         <input type="file" id="custom-team-logo" accept="image/*">
       </div>
