@@ -2,46 +2,137 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Login - Loja de Camisas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Champion's Shirts</title>
   <link rel="stylesheet" href="css/login.css">
 </head>
-<body class="login-page">
-  <div class="login-box" >
-    <div id="popupBoasVindas" class="popup">
-  <p>👋 Bem-vindo! Você está na tela de Login da <strong>Champion’s Shirts</strong>! 🇧🇷</p>
-</div>
+<body class="auth-page">
+  <div class="auth-box">
+    <div id="popupBoasVindas" class="popup" role="alert" aria-live="polite">
+      <p>Bem-vindo! Você está na tela de Login da <strong>Champion's Shirts</strong>!</p>
+    </div>
+
+    <img src="assets/logo.png" alt="Champion's Shirts" class="auth-logo">
 
     <h1>Login</h1>
 
-    <form id="loginForm">
-      <input type="text" placeholder="Login" id="login">
-    <input type="password" placeholder="Senha" id="senha">
-    <input class="btn-login" type="submit" onclick="logar(); return false" >
+    <form id="loginForm" action="#" method="POST" novalidate>
+      <div class="input-group">
+        <label for="username">Usuário</label>
+        <div class="input-wrapper">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <input type="text" placeholder="Digite seu usuário" id="username" name="username" autocomplete="username" required>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Senha</label>
+        <div class="input-wrapper">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <input type="password" placeholder="Digite sua senha" id="password" name="password" autocomplete="current-password" required>
+          <button type="button" class="toggle-password" aria-label="Mostrar senha" tabindex="-1">
+            <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:none">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-options">
+        <label class="remember-me">
+          <input type="checkbox" id="remember">
+          <span class="checkmark"></span>
+          Lembrar-me
+        </label>
+      </div>
+
+      <button class="btn-primary" type="submit" id="btnLogin">
+        <span class="btn-text">Entrar</span>
+        <span class="btn-spinner" aria-hidden="true"></span>
+      </button>
     </form>
 
-    <p id="msgErro"></p>
-    <p class="links"><a href="cadastro-cliente.html">Não tem uma conta?Cadastre-se (sem login)</a></p>
-
+    <p id="msgErro" class="msg-box" role="alert" aria-live="polite"></p>
+    <p class="auth-links"><a href="cadastro-cliente.html">Não tem uma conta? Cadastre-se</a></p>
   </div>
 
-  <script>
-  // Exibe o pop-up ao carregar a página
-  window.onload = function() {
-    const popup = document.getElementById("popupBoasVindas");
-    popup.style.display = "block";
-
-    // Oculta após 5 segundos
-    setTimeout(() => {
-      popup.style.display = "none";
-    }, 5000);
-  };
-</script>
-
-</body>
-
   <script src="js/script.js"></script>
+  <script>
+    const form = document.getElementById('loginForm');
+    const msgErro = document.getElementById('msgErro');
+    const btnLogin = document.getElementById('btnLogin');
+    const popup = document.getElementById('popupBoasVindas');
+    const togglePass = document.querySelector('.toggle-password');
+    const passInput = document.getElementById('password');
 
+    if (popup) {
+      popup.style.display = 'block';
+      setTimeout(() => { popup.style.display = 'none'; }, 5000);
+    }
 
+    togglePass.addEventListener('click', () => {
+      const isPassword = passInput.type === 'password';
+      passInput.type = isPassword ? 'text' : 'password';
+      togglePass.querySelector('.eye-icon').style.display = isPassword ? 'none' : '';
+      togglePass.querySelector('.eye-off-icon').style.display = isPassword ? '' : 'none';
+      togglePass.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+    });
 
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      logar();
+    });
+
+    function logar() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      msgErro.textContent = '';
+
+      if (!username || !password) {
+        msgErro.textContent = 'Preencha todos os campos.';
+        return;
+      }
+
+      btnLogin.classList.add('loading');
+
+      setTimeout(() => {
+        const usuarios = JSON.parse(localStorage.getItem('champions_usuarios') || '[]');
+        const usuario = usuarios.find(
+          u => u.login === username && u.senha === password
+        );
+
+        if (usuario) {
+          if (document.getElementById('remember').checked) {
+            localStorage.setItem('champions_remember', username);
+          } else {
+            localStorage.removeItem('champions_remember');
+          }
+          localStorage.setItem('champions_logado', JSON.stringify(usuario));
+          window.location.href = 'index.html';
+        } else {
+          msgErro.textContent = 'Usuário ou senha inválidos.';
+          btnLogin.classList.remove('loading');
+        }
+      }, 800);
+    }
+
+    const remembered = localStorage.getItem('champions_remember');
+    if (remembered) {
+      document.getElementById('username').value = remembered;
+      document.getElementById('remember').checked = true;
+    }
+  </script>
+</body>
 </html>
-

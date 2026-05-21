@@ -2,22 +2,151 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Cadastro de Cliente</title>
-  <link rel="stylesheet" href="css/style2.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Champion's Shirts</title>
+  <link rel="stylesheet" href="css/login.css">
 </head>
-<body>
-  <div class="container">
-    <h1>Cadastro de Cliente</h1>
-    <form id="formCliente">
-      <input type="text" id="nomeCliente" placeholder="Nome Completo" required>
-      <input type="email" id="emailCliente" placeholder="Email" required>
-      <input type="Senha" id="senhaCliente" placeholder="Senha" required>
-      <input type="text" id="enderecoCliente" placeholder="Endereço" required>
-      <button type="submit">Cadastrar</button>
+<body class="auth-page auth-page--cadastro">
+  <div class="auth-box">
+    <img src="assets/logo.png" alt="Champion's Shirts" class="auth-logo">
+
+    <h1>Criar Conta</h1>
+
+    <form id="formCadastro" novalidate>
+      <div class="input-group">
+        <label for="nomeCompleto">Nome Completo</label>
+        <div class="input-wrapper">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <input type="text" placeholder="Digite seu nome completo" id="nomeCompleto" name="nomeCompleto" autocomplete="name" required>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="emailCadastro">E-mail</label>
+        <div class="input-wrapper">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <input type="email" placeholder="Digite seu e-mail" id="emailCadastro" name="emailCadastro" autocomplete="email" required>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="senhaCadastro">Senha</label>
+        <div class="input-wrapper">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <input type="password" placeholder="Crie uma senha" id="senhaCadastro" name="senhaCadastro" autocomplete="new-password" required minlength="6">
+          <button type="button" class="toggle-password" aria-label="Mostrar senha" tabindex="-1">
+            <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg class="eye-off-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:none">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="enderecoCadastro">Endereço</label>
+        <div class="input-wrapper">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <input type="text" placeholder="Digite seu endereço" id="enderecoCadastro" name="enderecoCadastro" autocomplete="street-address" required>
+        </div>
+      </div>
+
+      <button class="btn-primary" type="submit" id="btnCadastrar">
+        <span class="btn-text">Cadastrar</span>
+        <span class="btn-spinner" aria-hidden="true"></span>
+      </button>
     </form>
-    <div id="listaClientes"></div>
-    <p class="links"><a href="index.html">Página Inicial</a></p>
+
+    <p id="msgCadastro" class="msg-box" role="alert" aria-live="polite"></p>
+    <p class="auth-links"><a href="login.html">Já tem uma conta? Faça login</a></p>
   </div>
-  <script src="js/teste.js"></script>
+
+  <script>
+    const form = document.getElementById('formCadastro');
+    const msgCadastro = document.getElementById('msgCadastro');
+    const btnCadastrar = document.getElementById('btnCadastrar');
+
+    document.querySelectorAll('.toggle-password').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const input = btn.closest('.input-wrapper').querySelector('input');
+        const isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+        btn.querySelector('.eye-icon').style.display = isPassword ? 'none' : '';
+        btn.querySelector('.eye-off-icon').style.display = isPassword ? '' : 'none';
+        btn.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      cadastrar();
+    });
+
+    function cadastrar() {
+      const nome = document.getElementById('nomeCompleto').value.trim();
+      const email = document.getElementById('emailCadastro').value.trim();
+      const senha = document.getElementById('senhaCadastro').value;
+      const endereco = document.getElementById('enderecoCadastro').value.trim();
+
+      msgCadastro.textContent = '';
+      msgCadastro.className = 'msg-box';
+
+      if (!nome || !email || !senha || !endereco) {
+        msgCadastro.textContent = 'Preencha todos os campos.';
+        return;
+      }
+
+      if (senha.length < 6) {
+        msgCadastro.textContent = 'A senha deve ter pelo menos 6 caracteres.';
+        return;
+      }
+
+      btnCadastrar.classList.add('loading');
+
+      setTimeout(() => {
+        const usuarios = JSON.parse(localStorage.getItem('champions_usuarios') || '[]');
+
+        if (usuarios.some(u => u.email === email)) {
+          msgCadastro.textContent = 'Este e-mail já está cadastrado.';
+          btnCadastrar.classList.remove('loading');
+          return;
+        }
+
+        const novoUsuario = {
+          id: Date.now(),
+          login: nome,
+          email: email,
+          senha: senha,
+          endereco: endereco
+        };
+
+        usuarios.push(novoUsuario);
+        localStorage.setItem('champions_usuarios', JSON.stringify(usuarios));
+
+        msgCadastro.className = 'msg-box success';
+        msgCadastro.textContent = 'Conta criada com sucesso! Redirecionando...';
+
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 1500);
+      }, 800);
+    }
+  </script>
 </body>
 </html>
