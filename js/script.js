@@ -24,6 +24,7 @@ function formatBRL(value) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
+
 /* ==========================================================================
    Renderização dos Produtos
    ========================================================================== */
@@ -52,9 +53,8 @@ function renderProducts(team = "all") {
     grid.appendChild(card);
   });
 
-  // Usamos delegação de eventos no container `#product-grid` (inicializado em DOMContentLoaded)
-  // portanto não é necessário anexar listeners individuais aqui.
 }
+
 
 /* Renderiza uma lista específica de produtos (usado por filtros personalizados) */
 function renderProductList(items) {
@@ -77,6 +77,7 @@ function renderProductList(items) {
     grid.appendChild(card);
   });
 }
+
 
 /* ==========================================================================
    Carrinho
@@ -186,10 +187,14 @@ function toggleCart() {
     if (btn) {
       btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
     }
+
+
     // Atualiza atributo ARIA do painel para leitores de tela
     panel.setAttribute("aria-hidden", isOpen ? "false" : "true");
   }
 }
+
+
 
 /* ==========================================================================
    Filter Chips
@@ -198,6 +203,8 @@ function initFilters() {
   const container = document.getElementById('teams');
   if (!container) return;
 
+
+
   // Torna chips focáveis para acessibilidade
   const chips = container.querySelectorAll('.chip');
   chips.forEach(c => c.setAttribute('tabindex', '0'));
@@ -205,10 +212,14 @@ function initFilters() {
   const customInput = document.getElementById('custom-input');
   const customText = document.getElementById('custom-team-text');
 
+
+
   // Clique delegando no container
   container.addEventListener('click', (e) => {
     const chip = e.target.closest('.chip');
     if (!chip || !container.contains(chip)) return;
+
+
 
     // Ativa apenas o chip clicado
     chips.forEach(c => c.classList.remove('active'));
@@ -225,6 +236,8 @@ function initFilters() {
     }
   });
 
+
+
   // Permite ativar chips via teclado (Enter / Space)
   container.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -232,6 +245,8 @@ function initFilters() {
       if (chip) { chip.click(); e.preventDefault(); }
     }
   });
+
+
 
   // Filtro personalizado por nome (busca no nome e no time)
   if (customText) {
@@ -255,6 +270,7 @@ function toggleCustomInput() {
   }
 }
 
+
 /* ==========================================================================
    Initialization
    ========================================================================== */
@@ -270,6 +286,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProducts();
   initFilters();
 
+
+
   // Botão "Ver produtos" no hero
   const heroBtn = document.getElementById("hero-produtos-btn");
   if (heroBtn) {
@@ -278,11 +296,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+
+
   // Botão do carrinho
   const cartBtn = document.getElementById("cart-btn");
   if (cartBtn) {
     cartBtn.addEventListener("click", toggleCart);
   }
+
+
 
   // Botão para fechar/minimizar o carrinho quando estiver aberto
   const cartCloseBtn = document.getElementById('cart-close');
@@ -294,6 +316,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+
+
   // Responsive nav toggle
   const navToggle = document.getElementById('nav-toggle');
   const primaryNav = document.getElementById('primary-nav');
@@ -304,6 +328,8 @@ document.addEventListener("DOMContentLoaded", () => {
       primaryNav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
     });
 
+
+
     // Close nav when clicking outside
     document.addEventListener('click', (e) => {
       if (!primaryNav.classList.contains('open')) return;
@@ -312,6 +338,8 @@ document.addEventListener("DOMContentLoaded", () => {
       navToggle.setAttribute('aria-expanded', 'false');
       primaryNav.setAttribute('aria-hidden', 'true');
     });
+
+
 
     // Close nav on resize to large screens
     window.addEventListener('resize', () => {
@@ -322,6 +350,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+
 
   // Delegação de eventos no grid de produtos para garantir que
   // cliques em botões estáticos ou dinâmicos adicionem ao carrinho
@@ -335,6 +365,8 @@ document.addEventListener("DOMContentLoaded", () => {
         addToCart(parseInt(btn.dataset.id, 10));
         return;
       }
+
+
       // Suporte para botões estáticos sem data-id: identifica pelo texto
       if (btn.textContent && btn.textContent.toLowerCase().includes('adicionar ao carrinho')) {
         const card = btn.closest('.product-card');
@@ -347,6 +379,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+
 
   // Eventos no painel do carrinho: delegação para controles de quantidade e remoção
   const cartPanel = document.getElementById('cart-panel');
@@ -369,6 +403,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+
 
   // Carrega carrinho salvo e atualiza UI
   loadCart();
