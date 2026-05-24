@@ -16,6 +16,7 @@ const produtosDB = [
 let carrinho = [];
 
 const CART_STORAGE_KEY = 'champions_cart_v1';
+const REVIEW_STORAGE_KEY = 'champions_reviews_v1';
 
 /* ==========================================================================
    Utility Functions
@@ -272,6 +273,95 @@ function toggleCustomInput() {
 
 
 /* ==========================================================================
+   Avaliacoes
+   ========================================================================== */
+function buildStars(rating) {
+  const value = Math.max(1, Math.min(5, Number(rating) || 5));
+  return '\u2605'.repeat(value) + '\u2606'.repeat(5 - value);
+}
+
+function createReviewCard(review) {
+  const card = document.createElement('article');
+  card.className = 'review-card';
+
+  const stars = document.createElement('strong');
+  stars.textContent = buildStars(review.rating);
+
+  const comment = document.createElement('p');
+  comment.textContent = `"${review.comment}"`;
+
+  const name = document.createElement('span');
+  name.textContent = review.name;
+
+  card.append(stars, comment, name);
+  return card;
+}
+
+function saveReviews(reviews) {
+  try {
+    localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(reviews));
+  } catch (e) {
+    console.warn('Nao foi possivel salvar as avaliacoes:', e);
+  }
+}
+
+function loadReviews() {
+  try {
+    const raw = localStorage.getItem(REVIEW_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (e) {
+    console.warn('Erro carregando avaliacoes:', e);
+    return [];
+  }
+}
+
+function renderSavedReviews() {
+  const reviewsList = document.querySelector('#avaliacoes .reviews');
+  if (!reviewsList) return;
+
+  loadReviews().forEach(review => {
+    reviewsList.appendChild(createReviewCard(review));
+  });
+}
+
+function initReviewForm() {
+  const form = document.getElementById('review-form');
+  const reviewsList = document.querySelector('#avaliacoes .reviews');
+  const feedback = document.getElementById('review-feedback');
+  if (!form || !reviewsList) return;
+
+  renderSavedReviews();
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nameInput = document.getElementById('review-name');
+    const ratingInput = document.getElementById('review-rating');
+    const commentInput = document.getElementById('review-comment');
+    const name = nameInput.value.trim();
+    const rating = ratingInput.value;
+    const comment = commentInput.value.trim();
+
+    if (!name || !comment) {
+      if (feedback) feedback.textContent = 'Preencha seu nome e comentario.';
+      return;
+    }
+
+    const review = { name, rating, comment };
+    reviewsList.appendChild(createReviewCard(review));
+    saveReviews([...loadReviews(), review]);
+    form.reset();
+
+    if (feedback) {
+      feedback.textContent = 'Avaliacao enviada com sucesso!';
+    }
+  });
+}
+
+
+/* ==========================================================================
    Initialization
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
@@ -285,6 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderProducts();
   initFilters();
+  initReviewForm();
 
 
 

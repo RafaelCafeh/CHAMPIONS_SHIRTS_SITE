@@ -8,7 +8,13 @@
 </head>
 <body class="auth-page auth-page--cadastro">
   <div class="auth-box">
-    <img src="assets/logo.png" alt="Champion's Shirts" class="auth-logo">
+    <div id="popupBoasVindas" class="popup" role="alert" aria-live="polite">
+      <p>Bem-vindo! Voc&ecirc; est&aacute; na tela de Cadastro da <strong>Champion's Shirts</strong>!</p>
+    </div>
+
+    <a href="index.html" aria-label="Voltar para a pagina inicial">
+      <img src="assets/logo.png" alt="Champion's Shirts" class="auth-logo">
+    </a>
 
     <h1>Criar Conta</h1>
 
@@ -81,6 +87,12 @@
     const form = document.getElementById('formCadastro');
     const msgCadastro = document.getElementById('msgCadastro');
     const btnCadastrar = document.getElementById('btnCadastrar');
+    const popup = document.getElementById('popupBoasVindas');
+
+    if (popup) {
+      popup.style.display = 'block';
+      setTimeout(() => { popup.style.display = 'none'; }, 5000);
+    }
 
     document.querySelectorAll('.toggle-password').forEach(btn => {
       btn.addEventListener('click', () => {

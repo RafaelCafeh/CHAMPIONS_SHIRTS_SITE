@@ -1,105 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Minha Conta – Champion’s Shirts</title>
+  <title>Minha Conta - Champion's Shirts</title>
+  <meta name="description" content="Perfil do cliente Champion's Shirts.">
   <link rel="stylesheet" href="css/perfil.css">
 </head>
 <body>
-
- <!-- Nav Bar com logo, título e menu -->
- <header class="navbar">
-  <!-- logo à esquerda -->
-  <a href="index.html" class="logo-link" title="Voltar à Home">
-    <img src="assets/logo.png"
-         alt="Champion's Shirts Logo"
-         class="logo">
-  </a>
-
-  <!-- título e nav juntos no centro -->
-  <div class="center-group">
-    <h1 class="page-title">Meu Perfil</h1>
-
-    <nav>
-      <ul class="nav-list">
-        <li>
-          <a href="consulta-produto.html"
-             class="nav-link">
-            Consulta de Produto
-          </a>
-        </li>
-        <li>
-          <a href="consulta-envio.html"
-             class="nav-link">
-            Consulta de Envio
-          </a>
-        </li>
-        <li>
-          <a href="consulta-conta.html"
-             class="nav-link active">
-            Consulta da Conta
-          </a>
-        </li>
-      </ul>
-    </nav>
+  <div id="popupBoasVindas" class="popup" role="alert" aria-live="polite">
+    <p>Bem-vindo! Voc&ecirc; est&aacute; na tela de Minha Conta da <strong>Champion's Shirts</strong>!</p>
   </div>
-</header>
 
+  <a href="#main-content" class="skip-link">Ir para o conteudo principal</a>
 
-  <!-- Container Principal -->
-  <main class="profile-container">
-    <!-- Avatar e Info do Usuário -->
-    <aside class="profile-info">
-      <img src="assets/perfil.png" alt="Avatar do Usuário" class="avatar">
-      <h2>Alex Melo</h2>
-      <p>Torcedor Fanático</p>
-    </aside>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <a href="index.html" class="logo-link" aria-label="Voltar para a loja">
+          <img src="assets/logo.png" alt="Champion's Shirts" class="logo" loading="lazy">
+        </a>
+        <div>
+          <h1>Champion's Shirts</h1>
+          <small>Minha conta</small>
+        </div>
+      </div>
 
-    <!-- Informações da Conta -->
-    <section id="account-section" class="account-info section active">
-      <ul class="account-list">
-        <li class="account-item">
-          <img src="assets/conta.png" alt="Data de criação" class="icon">
-          <div class="details">
-            <span class="title">Conta criada em</span>
-            <span id="created-date" class="value">01/01/2021</span>
+      <nav class="primary-nav" aria-label="Navegacao da conta">
+        <a href="index.html">Loja</a>
+        <a href="">Produtos</a>
+        <a href="">Envios</a>
+        <a href="perfil.html" class="active">Conta</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container profile-page" id="main-content">
+    <section class="profile-hero">
+      <div>
+        <p class="eyebrow">Area do cliente</p>
+        <h2>Meu Perfil</h2>
+        <p>Acompanhe seus pedidos, favoritos e avaliacoes pendentes em um so lugar.</p>
+      </div>
+      <a href="index.html#produtos" class="btn">Continuar comprando</a>
+    </section>
+
+    <section class="profile-layout" aria-label="Resumo da conta">
+      <aside class="profile-card">
+        <img src="assets/perfil.png" alt="Avatar do usuario" class="avatar" loading="lazy">
+        <h3>Alex Melo</h3>
+        <p>Torcedor fanatico</p>
+        <div class="profile-meta">
+          <span>Cliente desde</span>
+          <strong>01/01/2021</strong>
+        </div>
+      </aside>
+
+      <section class="account-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Resumo</p>
+            <h3>Informacoes da conta</h3>
           </div>
-        </li>
-        <li class="account-item">
-          <img src="assets/enviados.png" alt="Produtos enviados" class="icon">
-          <div class="details">
-            <span class="title">Produtos enviados</span>
-            <span class="value">12</span>
-          </div>
-        </li>
-        <li class="account-item">
-          <img src="assets/pagar.png" alt="A pagar" class="icon">
-          <div class="details">
-            <span class="title">A pagar</span>
-            <span class="value">3</span>
-          </div>
-        </li>
-        <li class="account-item">
-          <img src="assets/avaliar.png" alt="A avaliar" class="icon">
-          <div class="details">
-            <span class="title">A avaliar produtos</span>
-            <span class="value">5</span>
-          </div>
-        </li>
-        <li class="account-item">
-          <img src="assets/favorito.png" alt="Favoritos" class="icon">
-          <div class="details">
-            <span class="title">Favoritos</span>
-            <span class="value">7</span>
-          </div>
-        </li>
-      </ul>
+        </div>
+
+        <ul class="account-list">
+          <li class="account-item">
+            <img src="assets/conta.png" alt="" class="icon" loading="lazy">
+            <div>
+              <span class="title">Conta criada em</span>
+              <strong class="value">01/01/2021</strong>
+            </div>
+          </li>
+          <li class="account-item">
+            <img src="assets/enviados.png" alt="" class="icon" loading="lazy">
+            <div>
+              <span class="title">Produtos enviados</span>
+              <strong class="value">12</strong>
+            </div>
+          </li>
+          <li class="account-item">
+            <img src="assets/pagar.png" alt="" class="icon" loading="lazy">
+            <div>
+              <span class="title">A pagar</span>
+              <strong class="value">3</strong>
+            </div>
+          </li>
+          <li class="account-item">
+            <img src="assets/avaliar.png" alt="" class="icon" loading="lazy">
+            <div>
+              <span class="title">A avaliar produtos</span>
+              <strong class="value">5</strong>
+            </div>
+          </li>
+          <li class="account-item">
+            <img src="assets/favorito.png" alt="" class="icon" loading="lazy">
+            <div>
+              <span class="title">Favoritos</span>
+              <strong class="value">7</strong>
+            </div>
+          </li>
+        </ul>
+      </section>
     </section>
   </main>
 
-  <script src="js/perfil.js"></script>
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>Champion's Shirts</strong>
+        <p>Rua Exemplo, 123 - Loja de camisas</p>
+      </div>
+      <div>
+        <p>Champion's Shirts. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const popup = document.getElementById('popupBoasVindas');
+
+    if (popup) {
+      popup.style.display = 'block';
+      setTimeout(() => { popup.style.display = 'none'; }, 5000);
+    }
+  </script>
 </body>
 </html>
-
-

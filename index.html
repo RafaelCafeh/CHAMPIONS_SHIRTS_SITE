@@ -38,6 +38,7 @@
       <nav id="primary-nav" aria-label="Navegação principal" aria-hidden="false">
         <a href="#">Início</a>
         <a href="#produtos">Loja</a>
+        <a href="#avaliacoes">Avaliações</a>
         <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
       </nav>
@@ -103,6 +104,7 @@
           <img src="assets/bannerhome.png" alt="Banner promocional Champion's Shirts — camisas oficiais e retrô" class="banner-img" loading="lazy">
         </a>
       </div>
+
     </section>
 
     <!-- Produtos -->
@@ -184,6 +186,54 @@
     <section id="sobre">
       <h3>Sobre nós</h3>
       <p>Champion's Shirts é uma loja dedicada a levar camisas oficiais, retrô e de colecionador para torcedores que amam o futebol. Trabalhamos com fornecedores confiáveis e oferecemos suporte para personalizações.</p>
+    </section>
+
+    <!-- Avaliações -->
+    <section id="avaliacoes">
+      <h3>Avaliações dos clientes</h3>
+      <p>As avaliações ajudam novos torcedores a comprar com mais confiança. Comentários sobre qualidade do tecido, acabamento, tamanho e prazo de entrega mostram a experiência real de quem já comprou na Champion's Shirts.</p>
+
+      <div class="reviews">
+        <article class="review-card">
+          <strong>★★★★★</strong>
+          <p>"A camisa chegou antes do prazo e o tecido é muito bom. Comprei para presente e ficou perfeita."</p>
+          <span>Mariana S.</span>
+        </article>
+
+        <article class="review-card">
+          <strong>★★★★★</strong>
+          <p>"Gostei da personalização. O nome e o número vieram bem alinhados, sem falhas na estampa."</p>
+          <span>Rafael M.</span>
+        </article>
+
+        <article class="review-card">
+          <strong>★★★★☆</strong>
+          <p>"Produto bonito e atendimento rápido. A tabela de medidas ajudou bastante na escolha do tamanho."</p>
+          <span>Lucas A.</span>
+        </article>
+      </div>
+
+      <form class="review-form" id="review-form">
+        <h4>Deixe sua avalia&ccedil;&atilde;o</h4>
+        <div class="review-fields">
+          <label for="review-name">Nome</label>
+          <input id="review-name" name="name" type="text" placeholder="Seu nome" required>
+
+          <label for="review-rating">Nota</label>
+          <select id="review-rating" name="rating" required>
+            <option value="5">5 estrelas</option>
+            <option value="4">4 estrelas</option>
+            <option value="3">3 estrelas</option>
+            <option value="2">2 estrelas</option>
+            <option value="1">1 estrela</option>
+          </select>
+
+          <label for="review-comment">Coment&aacute;rio</label>
+          <textarea id="review-comment" name="comment" rows="4" placeholder="Conte como foi sua experi&ecirc;ncia..." required></textarea>
+        </div>
+        <button class="btn" type="submit">Enviar avalia&ccedil;&atilde;o</button>
+        <p class="review-feedback" id="review-feedback" aria-live="polite"></p>
+      </form>
     </section>
 
     <!-- Contato -->

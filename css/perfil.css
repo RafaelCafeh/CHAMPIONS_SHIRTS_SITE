@@ -1,176 +1,427 @@
 :root {
-  --green-dark: #027a5e;
-  --green-light: #4caf50;
-  --grass: #aca6a657;
-  --white: #fff;
-  --radius: 0.5rem;
-  --gap: 1rem;
-  --font: 16px/1.5 "Segoe UI", sans-serif;
+  --primary: #1a472a;
+  --secondary: #f59e0b;
+  --accent: #10b981;
+  --bg-light: #f3f4f6;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 28px rgba(0,0,0,0.12);
 }
 
+
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font: var(--font);
-  background: var(--grass);
-  color: #222;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
 }
 
-/* container flex, mas com centro fixo */
-.navbar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--green-dark);
-  padding: 0.75rem 1rem;
-}
 
-/* logo fica fora do fluxo central */
-.logo-link {
+
+.skip-link {
   position: absolute;
-  left: 1rem;
-}
-.logo {
-  height: 120px;
-  width: auto;
-  object-fit: contain;
+  top: -100%;
+  left: 0;
+  background: #222;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 9999;
+  text-decoration: none;
 }
 
-/* agrupa título + nav para centralizar juntos */
-.center-group {
-  display: flex;
-  flex-direction: column;
+.skip-link:focus {
+  top: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+header {
+  background: rgba(26, 71, 42, 0.95);
+  box-shadow: var(--shadow-sm);
+  color: #fff;
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbar {
   align-items: center;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
 }
 
-/* título "Meu Perfil" */
-.page-title {
-  margin: 0;
-  font-size: 1.5rem;
-  color: var(--white);
+.brand {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+
+.logo {
+  background: #fff;
+  border-radius: 8px;
+  height: auto;
+  object-fit: contain;
+  padding: 6px;
+  width: 90px;
+}
+
+.brand h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.brand small {
+  font-size: 0.85rem;
   font-weight: 500;
-  margin-bottom: 0.5rem;
+  opacity: 0.85;
 }
 
-/* nav-list centralizada abaixo do título */
-.nav-list {
+.primary-nav {
   display: flex;
-  gap: 1.5rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-end;
 }
 
-.nav-link {
-  color: var(--white);
+.primary-nav a {
+  color: #fff;
+  font-weight: 500;
+  position: relative;
   text-decoration: none;
-  padding: 0.4rem 0.8rem;
+  transition: color 250ms ease;
+}
+
+.primary-nav a::after {
+  background: var(--secondary);
+  bottom: -4px;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  transition: width 250ms ease;
+  width: 0;
+}
+
+.primary-nav a:hover,
+.primary-nav a.active {
+  color: var(--secondary);
+}
+
+.primary-nav a:hover::after,
+.primary-nav a.active::after {
+  width: 100%;
+}
+
+.profile-page {
+  padding-bottom: 20px;
+}
+
+.profile-hero {
+  align-items: center;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   border-radius: var(--radius);
-  transition: background 0.2s;
-}
-.nav-link:hover,
-.nav-link.active {
-  background: var(--green-light);
-  color: var(--green-dark);
-}
-
-.nav-link {
-  color: var(--white);
-  text-decoration: none;
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--radius);
-  transition: background 0.2s;
-}
-.nav-link:hover,
-.nav-link.active {
-  background: var(--green-light);
-  color: var(--green-dark);
-}
-
-
-/* ── Layout Principal ───────────────────────────── */
-.profile-container {
+  color: #fff;
   display: flex;
-  max-width: 1000px;
-  margin: 2rem auto;
-  gap: var(--gap);
-  padding: 0 var(--gap);
+  gap: 24px;
+  justify-content: space-between;
+  margin: 40px 0 28px;
+  padding: 44px 40px;
 }
 
-/* ── Avatar e Info ───────────────────────────────── */
-.profile-info {
-  flex: 0 0 240px;
-  background: var(--white);
+.eyebrow {
+  color: var(--secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.profile-hero h2 {
+  font-size: 2.4rem;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.profile-hero p:not(.eyebrow) {
+  color: rgba(255,255,255,0.9);
+  max-width: 56ch;
+}
+
+.btn {
+  align-items: center;
+  background: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--primary);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.95rem;
+  font-weight: 700;
+  gap: 8px;
+  justify-content: center;
+  padding: 12px 20px;
+  text-decoration: none;
+  transition: all 250ms ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: var(--secondary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.popup {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, #027a5e, #049e7a);
+  color: #fff;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(2, 122, 94, 0.3);
+  font-size: 14px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideDown 0.5s ease forwards;
+  max-width: 360px;
+}
+
+@keyframes slideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-layout {
+  align-items: start;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 280px 1fr;
+}
+
+.profile-card,
+.account-panel {
+  background: #fff;
   border-radius: var(--radius);
-  padding: var(--gap);
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-card {
+  overflow: hidden;
+  padding: 24px;
+  position: sticky;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  top: 112px;
+}
+
+.profile-card::before {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  content: "";
+  display: block;
+  height: 84px;
+  margin: -24px -24px 0;
 }
 
 .avatar {
-  width: 120px;
-  height: 120px;
+  background: #fff;
+  border: 5px solid #fff;
   border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  height: 128px;
+  margin: -52px auto 14px;
   object-fit: cover;
-  border: 4px solid var(--green-light);
-  margin-bottom: var(--gap);
+  position: relative;
+  width: 128px;
 }
 
-.profile-info h2 {
-  margin-bottom: 0.25rem;
-  font-size: 1.25rem;
+.profile-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 4px;
 }
 
-.profile-info p {
-  color: #555;
+.profile-card p {
+  color: var(--text-light);
 }
 
-/* ── Conta: Cards de Info ───────────────────────── */
-.account-info {
-  flex: 1;
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: var(--gap);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.profile-meta {
+  background: var(--bg-light);
+  border-radius: var(--radius-sm);
+  display: grid;
+  gap: 2px;
+  margin-top: 18px;
+  padding: 12px;
+}
+
+.profile-meta span,
+.title {
+  color: var(--text-light);
+  font-size: 0.88rem;
+}
+
+.profile-meta strong {
+  color: var(--primary);
+}
+
+.account-panel {
+  padding: 24px;
+}
+
+.section-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.section-heading h3 {
+  font-size: 1.55rem;
 }
 
 .account-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--gap);
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   list-style: none;
 }
 
 .account-item {
-  display: flex;
   align-items: center;
-  gap: var(--gap);
-  padding: var(--gap);
-  background: #f9f9f9;
-  border-radius: var(--radius);
+  background: var(--bg-light);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-sm);
+  display: flex;
+  gap: 14px;
+  min-height: 104px;
+  padding: 16px;
+  transition: all 250ms ease;
+}
+
+.account-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
 }
 
 .icon {
-  width: 50px;
-  height: 50px;
+  background: #fff;
+  border-radius: 12px;
+  height: 56px;
+  object-fit: contain;
+  padding: 8px;
+  width: 56px;
 }
 
-.details {
-  display: flex;
-  flex-direction: column;
-}
-
-.title {
-  font-weight: bold;
-  color: var(--green-dark);
+.account-item div {
+  display: grid;
+  gap: 4px;
 }
 
 .value {
-  margin-top: 0.25rem;
+  color: var(--primary);
+  font-size: 1.35rem;
+  line-height: 1;
 }
 
+footer {
+  background: var(--primary);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  margin-top: 60px;
+  padding: 40px 20px;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.footer-grid strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.footer-grid p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+@media (max-width: 800px) {
+  .topbar,
+  .profile-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .primary-nav {
+    gap: 12px;
+    justify-content: flex-start;
+  }
+
+  .profile-hero {
+    padding: 32px 24px;
+  }
+
+  .profile-hero h2 {
+    font-size: 2rem;
+  }
+
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-card {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .logo {
+    width: 74px;
+  }
+
+  .brand h1 {
+    font-size: 1.25rem;
+  }
+
+  .primary-nav a {
+    font-size: 0.92rem;
+  }
+
+  .profile-hero {
+    margin-top: 24px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+
+
+  
+}
